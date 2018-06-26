@@ -5,9 +5,12 @@ var AppView = Backbone.View.extend({
 
 
   initialize: function() {
-    this.collection.on('select', (e)=>{this.render(e);},this);
     this.videos = this.collection; 
     this.video = this.collection.at(0);
+    // this.collection.on('select', (e)=>{this.render(e);},this);
+    this.collection.on('reset', ()=>{this.render(this.videos.at(0))}, this);
+
+
     this.render();
   },
   
@@ -15,13 +18,16 @@ var AppView = Backbone.View.extend({
   
 
   render: function(videoToDisplay) {
-    var video = videoToDisplay || this.video;
+    var video = videoToDisplay || this.video ;
     this.$el.html(this.template());
     new VideoListView({ el: this.$('.list'), collection: this.collection }).render();
-    new VideoPlayerView({el : $('.player'), model : video}).render();
-    new SearchView({el: $('.search')}).render();
-      // return this;
+    new SearchView({el: $('.search'), collection : this.collection}).render();
+    new VideoPlayerView({el : $('.player'), collection : this.collection}).render(this.collection.at(0));
+      
+// return this;
   },
+
+
 
  
 

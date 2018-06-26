@@ -5,7 +5,6 @@ var VideoListEntryView = Backbone.View.extend({
     // },
 
   render: function() {
-
     this.$el.html(this.template(this.model.attributes));
     return this.$el;
   },
@@ -15,6 +14,7 @@ var VideoListEntryView = Backbone.View.extend({
   events: {
     'click': 'handleClick'
   },
+
   handleClick: function(e) {
         // var video = this.model
         // window.videoPlayerView = new VideoPlayerView({el : $('.player'), model : video}).render();  
