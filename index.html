@@ -31,11 +31,12 @@
   <script>
     
     backboneReady(() => {
+      console.log(window.exampleVideoData)
+      var videos = new Videos(window.exampleVideoData);
+      console.log(videos);
+      new AppView({el: $('#app'), collection: videos}).render();
       
-      var videos = new Videos(exampleVideoData);
-      new AppView({el: $('#app'),collection: videos}).render();
-      new SearchView({el: $('.search')}).render();
-      new VideoPlayerView({el : $('.player')}).render();
+      
     });
   </script>
 
